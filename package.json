@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "lint:fix": "eslint src/ --fix"
+    "lint:fix": "eslint src/ --fix && prettier src/ --write"
   },
   "dependencies": {
     "next": "12.3.1",
