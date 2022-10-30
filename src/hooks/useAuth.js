@@ -20,7 +20,7 @@ export const useAuth = () => {
 //Captar información del usuario
 function useProvideAuth() {
   const [user, setUser] = useState(null);
-  const [error, setError]=useState();
+  const [error, setError] = useState();
   //funcion de iniciar sesion
   const singIn = async (email, password) => {
     const options = {
