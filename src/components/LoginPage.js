@@ -18,9 +18,9 @@ export default function LoginPage() {
       () => {
         console.log('Login success');
       },
-      (reason) => {
+      (message) => {
         console.log('login failed');
-        console.error(reason);
+        console.error(message);
         auth.setError(' Invalid UserName or Passsword');
       }
     );
