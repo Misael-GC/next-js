@@ -19,6 +19,7 @@ const PRODUCT_OFFSET = 5;
 export default function Dashboard() {
   const [offset, setOffset] = useState(PRODUCT_OFFSET);
   const products = useFetch(endPoints.products.getProduct(PRODUCT_LIMIT, offset));
+  console.log('no puede ser + ' + products);
   return (
     <>
       <div className="flex flex-col">
