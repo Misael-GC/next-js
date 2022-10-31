@@ -8,6 +8,8 @@ const people = [
     image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
   },
 ];
+import { useState } from 'react';
+import Pagination from './Pagination';
 import endPoints from '@services/api'; //API
 import useFetch from '@hooks/useFetch'; //API
 
@@ -15,8 +17,8 @@ const PRODUCT_LIMIT = 5;
 const PRODUCT_OFFSET = 5;
 
 export default function Dashboard() {
-  const products = useFetch(endPoints.products.getProduct(PRODUCT_LIMIT, PRODUCT_OFFSET)); //API
-  console.log(products);
+  const [offset, setOffset] = useState(PRODUCT_OFFSET);
+  const products = useFetch(endPoints.products.getProduct(PRODUCT_LIMIT, offset));
   return (
     <>
       <div className="flex flex-col">
@@ -86,6 +88,7 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
+        <Pagination offset={offset} setOffset={setOffset} />
       </div>
     </>
   );
