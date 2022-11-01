@@ -7,27 +7,21 @@ const endPoints = {
     profile: `${API}/api/${VERSION}/auth/profile`,
   },
   products: {
-    getProducts: `${API}/api/${VERSION}/products/`,
-    postProducts: `${API}/api/${VERSION}/products/`,
     getProduct: (id) => `${API}/api/${VERSION}/products/${id}/`,
-    putProduct: (id) => `${API}/api/${VERSION}/products/${id}/`,
+    allProducts: `${API}/api/${VERSION}/products/`,
+    getProducts: (limit, offset) => `${API}/api/${VERSION}/products?limit=${limit}&offset=${offset}`,
+    addProducts: `${API}/api/${VERSION}/products`,
+    updateProducts: (id) => `${API}/api/${VERSION}/products/${id}/`,
     deleteProduct: (id) => `${API}/api/${VERSION}/products/${id}/`,
   },
-  users: {
-    getUsers: `${API}/api/${VERSION}/users`,
-    postUsers: `${API}/api/${VERSION}/users`,
-    postUserA: `${API}/api/${VERSION}/users/is-available`,
-  },
   categories: {
-    getCategories: `${API}/api/${VERSION}/categories`,
-    postCategories: `${API}/api/${VERSION}/categories`,
-    getCategorie: (id) => `${API}/api/${VERSION}/categories/${id}`,
-    putCategorie: (id) => `${API}/api/${VERSION}/categories/${id}`,
-    getCategorieP: (id) => `${API}/api/${VERSION}/categories/${id}/products`,
+    getCategoriesList: `${API}/api/${VERSION}/categories/`,
+    addCategory: `${API}/api/${VERSION}/categories/`,
+    getCategoryItems: (id) => `${API}/api/${VERSION}/categories/${id}/products/`,
+    updateCategory: (id) => `${API}/api/${VERSION}/categories/${id}/`,
   },
   files: {
-    postFiles: `${API}/api/${VERSION}/files/upload`,
-    getFiles: (filename) => `${API}/api/${VERSION}/files/${filename}`,
+    addImage: `${API}/api/${VERSION}/files/upload/`,
   },
 };
 

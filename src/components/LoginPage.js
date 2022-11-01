@@ -1,16 +1,15 @@
 import { useRef } from 'react';
+import { useRouter } from 'next/router';
 import { LockClosedIcon } from '@heroicons/react/24/solid';
 import { useAuth } from '@hooks/useAuth';
-import { useRouter } from 'next/router'; //router
-import ModalLoginError from '@common/ModalLoginError';
 
 export default function LoginPage() {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const auth = useAuth();
-  const router = useRouter(); //router
+  const router = useRouter();
 
-  const submitHandler = (event) => {
+  const submitHanlder = (event) => {
     event.preventDefault();
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
@@ -27,7 +26,6 @@ export default function LoginPage() {
       }
     );
   };
-
   return (
     <>
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -36,7 +34,7 @@ export default function LoginPage() {
             <img className="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow" />
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
           </div>
-          <form className="mt-8 space-y-6" onSubmit={submitHandler}>
+          <form className="mt-8 space-y-6" onSubmit={submitHanlder}>
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="rounded-md shadow-sm -space-y-px">
               <div>
@@ -80,7 +78,7 @@ export default function LoginPage() {
               </div>
 
               <div className="text-sm">
-                <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+                <a href="/reset" className="font-medium text-indigo-600 hover:text-indigo-500">
                   Forgot your password?
                 </a>
               </div>
@@ -97,12 +95,6 @@ export default function LoginPage() {
                 Sign in
               </button>
             </div>
-            {auth.error ? (
-              <div className="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
-                <span className="font-medium">Login Failed: </span> {auth.error}
-                <ModalLoginError />
-              </div>
-            ) : null}
           </form>
         </div>
       </div>
