@@ -1,27 +1,30 @@
 import endPoints from '@services/api';
 import useFetch from '@hooks/useFetch';
-import { Chart } from '@common/Chart';
-import { useState } from 'react';
 import Pagination from './Pagination';
+import { Chart } from '@common/Chart'; //P1
+import { useState } from 'react';
 
-const PRODUCT_LIMIT = 6;
-const PRODUCT_OFFSET = 6;
+const PRODUCT_LIMIT = 12;
+const PRODUCT_OFFSET = 12;
 
 export default function Dashboard() {
   const [offset, setOffset] = useState(PRODUCT_OFFSET);
 
   const products = useFetch(endPoints.products.getProducts(PRODUCT_LIMIT, offset));
 
-  const categoryNames = products?.map((product) => product.category);
-  const categoryCount = categoryNames?.map((category) => category.name);
+  //P4 ACCEDER A LA API
+  const categoryNames = products?.map((product) => product.category); //p4
+  const categoryCount = categoryNames?.map((category) => category.name); //p4
 
+  //P5 -  Saber cuantas veces se repite cada categoría
   const countOccurrences = (arr) => arr.reduce((prev, curr) => ((prev[curr] = ++prev[curr] || 1), prev), {});
 
+  //P2 FORMATO DE TABLA
   const data = {
     datasets: [
       {
         label: 'Categories',
-        data: countOccurrences(categoryCount),
+        data: countOccurrences(categoryCount), //P6 - Lo add a our table
         borderWidth: 2,
         backgroundColor: ['#ffbb11', '#c0c0c0', '#50AF95', 'f3ba2f', '#2a71d0'],
       },
@@ -30,7 +33,7 @@ export default function Dashboard() {
 
   return (
     <>
-      <Chart className="mb-8 mt-2" chartData={data} />
+      <Chart className="mb-8 mt-2" chartData={data} /> {/*P3 ADD TABLA AL FRONTEND */}
       <div className="flex flex-col">
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
