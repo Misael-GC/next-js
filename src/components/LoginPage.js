@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { useRouter } from 'next/router';
 import { LockClosedIcon } from '@heroicons/react/24/solid';
 import { useAuth } from '@hooks/useAuth';
+import ModalLoginError from '@common/ModalLoginError';
 
 export default function LoginPage() {
   const emailRef = useRef(null);
@@ -18,6 +19,7 @@ export default function LoginPage() {
     auth.singIn(email, password).then(
       () => {
         router.push('/dashboard'); //router
+        console.log('Ok');
       },
       (message) => {
         console.log('login failed');
@@ -95,6 +97,13 @@ export default function LoginPage() {
                 Sign in
               </button>
             </div>
+            {auth.error ? (
+              <div className="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
+                <span className="font-medium">Login Failed!</span>
+                {auth.error}
+                <ModalLoginError />
+              </div>
+            ) : null}
           </form>
         </div>
       </div>
