@@ -8,7 +8,7 @@ const endPoints = {
   },
   products: {
     getProduct: (id) => `${API}/api/${VERSION}/products/${id}/`,
-    allProducts: `${API}/api/${VERSION}/products/`,
+    allProducts: `${API}/api/${VERSION}/products/`, // esta linea pertenece a Creación del componente Alert
     getProducts: (limit, offset) => `${API}/api/${VERSION}/products?limit=${limit}&offset=${offset}`,
     addProducts: `${API}/api/${VERSION}/products`,
     updateProducts: (id) => `${API}/api/${VERSION}/products/${id}/`,
