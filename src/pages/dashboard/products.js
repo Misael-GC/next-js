@@ -1,9 +1,7 @@
-// import endPoints from '@services/api';
-// import useFetch from '@hooks/useFetch';
-// import Pagination from './Pagination';
 import { Fragment, useState } from 'react';
 import Modal from '@common/Modal';
 import { PlusIcon } from "@heroicons/react/20/solid";
+import FormProduct from '@components/FormProduct';
 
 export default function products() {
   const [open, setOpen] = useState(false);
@@ -94,7 +92,7 @@ export default function products() {
         </div>
       </div>
       <Modal open={open} setOpen={setOpen}>
-        <h1>Hi world!</h1>
+        <FormProduct />
       </Modal>
     </>
   );
