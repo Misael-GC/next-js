@@ -1,10 +1,12 @@
 import { useRef } from 'react';
+import { ValidationSchema } from '@common/ValidationSchema';
 
 export default function FormProduct() {
   const formRef = useRef(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    //formData captura cada elemento del input
     const formData = new FormData(formRef.current);
 
     const data = {
@@ -16,7 +18,19 @@ export default function FormProduct() {
     };
 
     console.log(data);
+
+    const valid = await ValidationSchema.validate(data).catch(function (err) {
+      let errorValidate = err.errors;
+      let errorMessage = '';
+      for (const [key, value] of Object.entries(errorValidate)) {
+        console.log(value);
+        errorMessage = errorMessage.concat(value);
+      }
+      alert(errorMessage);
+    });
+    console.log({ valid }); //Imprime los datos después de la validación
   };
+
   return (
     <form ref={formRef} onSubmit={handleSubmit}>
       <div className="overflow-hidden">
