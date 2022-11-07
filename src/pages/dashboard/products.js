@@ -1,16 +1,19 @@
 import { useState, useEffect } from 'react';
 import Modal from '@common/Modal';
-import { PlusIcon } from "@heroicons/react/20/solid";
+import { PlusIcon } from '@heroicons/react/20/solid';
 import FormProduct from '@components/FormProduct';
 import endPoints from '@services/api';
 import axios from 'axios';
+import useAlert from '@hooks/useAlert';
+import Alert from '@common/Alert';
 
 export default function Products() {
   const [open, setOpen] = useState(false);
   const [products, setProducts] = useState([]);
+  const { alert, setAlert, toggleAlert } = useAlert();
 
   useEffect(() => {
-    async function getProducts(){
+    async function getProducts() {
       const response = await axios.get(endPoints.products.allProducts);
       setProducts(response.data);
     }
@@ -19,10 +22,11 @@ export default function Products() {
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [alert]); //cada que escuche a alert va actualizar los productos con los nuevos agregados
 
   return (
     <>
+      <Alert alert={alert} handleClose={toggleAlert} />
       <div className="lg:flex lg:items-center lg:justify-between mb-8">
         <div className="min-w-0 flex-1">
           <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">List of products</h2>
@@ -107,7 +111,7 @@ export default function Products() {
         </div>
       </div>
       <Modal open={open} setOpen={setOpen}>
-        <FormProduct />
+        <FormProduct setOpen={setOpen} setAlert={setAlert} />
       </Modal>
     </>
   );
