@@ -26,14 +26,23 @@ export default function Products() {
   }, [alert]); //cada que escuche a alert va actualizar los productos con los nuevos agregados y ceerar el modal
 
   const handleDelete = (id) => {
-    deleteProduct(id).then(() => {
-      setAlert({
-        active: true,
-        message: 'Producto eliminado exitosamente',
-        type: 'error',
-        autoClose: true,
-      }); //Poner el catch
-    });
+    deleteProduct(id)
+      .then(() => {
+        setAlert({
+          active: true,
+          message: 'Producto eliminado exitosamente',
+          type: 'error',
+          autoClose: true,
+        }); //Poner el catch
+      })
+      .catch((error) => {
+        setAlert({
+          active: true,
+          message: error.message,
+          type: 'error',
+          autoClose: false,
+        });
+      });
   };
 
   return (
