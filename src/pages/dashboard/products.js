@@ -22,7 +22,7 @@ export default function Products() {
     } catch (error) {
       console.log(error);
     }
-  }, [alert]); //cada que escuche a alert va actualizar los productos con los nuevos agregados
+  }, [alert]); //cada que escuche a alert va actualizar los productos con los nuevos agregados y ceerar el modal
 
   return (
     <>
