@@ -6,8 +6,8 @@ export default function FormProduct({ setOpen, setAlert, product }) {
   const formRef = useRef(null);
   console.log(product);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     //formData captura cada elemento del input
     const formData = new FormData(formRef.current);
 
@@ -75,7 +75,7 @@ export default function FormProduct({ setOpen, setAlert, product }) {
               </label>
               <select
                 id="category"
-                defaultValue={product?.category}
+                value={product?.category?.id.toString()}
                 name="category"
                 autoComplete="category-name"
                 className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -83,7 +83,7 @@ export default function FormProduct({ setOpen, setAlert, product }) {
                 <option value="1">Clothes</option>
                 <option value="2">Electronics</option>
                 <option value="3">Furniture</option>
-                <option value="4">Toys</option>
+                <option value="4">Shoes</option>
                 <option value="5">Others</option>
               </select>
             </div>
