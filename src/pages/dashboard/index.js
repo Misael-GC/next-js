@@ -1,7 +1,7 @@
 import endPoints from '@services/api';
 import useFetch from '@hooks/useFetch';
 import Pagination from './Pagination';
-import { Chart } from '@common/Chart'; //P1
+import { Chart } from '@common/Chart';
 import { useState } from 'react';
 
 const PRODUCT_LIMIT = 12;
@@ -33,7 +33,7 @@ export default function Dashboard() {
 
   return (
     <>
-      <Chart className="mb-8 mt-2" chartData={data} /> {/*P3 ADD TABLA AL FRONTEND */}
+      <Chart className="mb-8 mt-2" chartData={data} />
       <div className="flex flex-col">
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
