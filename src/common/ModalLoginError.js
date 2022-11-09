@@ -14,7 +14,6 @@ export default function MyModal() {
 
   return (
     <>
-
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child as={Fragment} enter="ease-out duration-300" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in duration-200" leaveFrom="opacity-100" leaveTo="opacity-0">
@@ -37,8 +36,7 @@ export default function MyModal() {
                     Usuario o contraseña invalida, checar de nueva cuenta porfavor.
                   </Dialog.Title>
                   <div className="mt-2">
-                    <p className="text-sm text-gray-500">
-                    Recuerda que si olvidaste tu usuario o contraseña, puedes enviar un mensaje a team@busiines.com para recuperarla</p>
+                    <p className="text-sm text-gray-500">Recuerda que si olvidaste tu usuario o contraseña, puedes enviar un mensaje a team@busiines.com para recuperarla</p>
                   </div>
 
                   <div className="mt-4">
