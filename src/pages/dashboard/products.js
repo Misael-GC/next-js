@@ -9,6 +9,7 @@ import Alert from '@common/Alert';
 import { deleteProduct } from '@services/api/products';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 export default function Products() {
   const [open, setOpen] = useState(false);
@@ -101,7 +102,7 @@ export default function Products() {
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
                           <div className="flex-shrink-0 h-10 w-10">
-                            <img className="h-10 w-10 rounded-full" src={product.images[0]} alt="" />
+                            {product.images[0] && <Image className="h-10 w-10 rounded-full" loader={() => product.images[0]} src={product.images[0]} layout="fixed" width="40" height="40" alt="" />}
                           </div>
                           <div className="ml-4">
                             <div className="text-sm font-medium text-gray-900">{product.title}</div>
@@ -117,9 +118,7 @@ export default function Products() {
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{product.id}</td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                         <Link href={`/dashboard/edit/${product.id}`}>
-                          <a className="text-indigo-600 hover:text-indigo-900">
-                            Edit
-                          </a>
+                          <a className="text-indigo-600 hover:text-indigo-900">Edit</a>
                         </Link>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
