@@ -1,14 +1,15 @@
 import { useRef } from 'react';
 import { ValidationSchema } from '@common/ValidationSchema';
-import { addProduct } from '@services/api/products';
+import { addProduct, updateProduct } from '@services/api/products';
+import { useRouter } from 'next/router';
 
 export default function FormProduct({ setOpen, setAlert, product }) {
   const formRef = useRef(null);
+  const router = useRouter();
   console.log(product);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    //formData captura cada elemento del input
     const formData = new FormData(formRef.current);
 
     const data = {
@@ -19,26 +20,34 @@ export default function FormProduct({ setOpen, setAlert, product }) {
       images: [formData.get('images').name],
     };
 
-    //console.log(data);
-    addProduct(data)
-      .then(() => {
-        //cada vez que se agregue un producto se pueda mostrar esta alerta
-        setAlert({
-          active: true,
-          message: 'Producto agregado exitosamente',
-          type: 'success',
-          autoClose: false,
-        });
-        setOpen(false); //se pueda cerrar el modal
-      })
-      .catch((error) => {
-        setAlert({
-          active: true,
-          message: error.message,
-          type: 'error',
-          autoClose: false,
-        });
+    if (product) {
+      updateProduct(product.id, data).then(() => {
+        router.push('/dashboard/products/'); //regresar a la pagina de los productos
       });
+    } else {
+      //logiga se corre cuando no exista product
+      addProduct(data)
+        .then(() => {
+          //cada vez que se agregue un producto se pueda mostrar esta alerta
+          setAlert({
+            active: true,
+            message: 'Producto agregado exitosamente',
+            type: 'success',
+            autoClose: false,
+          });
+          setOpen(false); //se pueda cerrar el modal
+        })
+        .catch((error) => {
+          setAlert({
+            active: true,
+            message: error.message,
+            type: 'error',
+            autoClose: false,
+          });
+        });
+    }
+
+    //console.log(data);
 
     const valid = await ValidationSchema.validate(data).catch(function (err) {
       let errorValidate = err.errors;
@@ -61,13 +70,25 @@ export default function FormProduct({ setOpen, setAlert, product }) {
               <label htmlFor="title" className="block text-sm font-medium text-gray-700">
                 Title
               </label>
-              <input defaultValue={product?.title} type="text" name="title" id="title" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+              <input
+                defaultValue={product?.title}
+                type="text"
+                name="title"
+                id="title"
+                className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+              />
             </div>
             <div className="col-span-6 sm:col-span-3">
               <label htmlFor="price" className="block text-sm font-medium text-gray-700">
                 Price
               </label>
-              <input defaultValue={product?.price} type="number" name="price" id="price" className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+              <input
+                defaultValue={product?.price}
+                type="number"
+                name="price"
+                id="price"
+                className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+              />
             </div>
             <div className="col-span-6">
               <label htmlFor="category" className="block text-sm font-medium text-gray-700">
