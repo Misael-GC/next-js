@@ -18,7 +18,7 @@ export default function LoginPage() {
     // console.log(email, password);
     auth.singIn(email, password).then(
       () => {
-        router.push('/dashboard/products'); //router
+        router.push('/dashboard'); //router
         console.log('Ok');
       },
       (message) => {
