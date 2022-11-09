@@ -25,6 +25,7 @@ export default function Header() {
     email: auth?.user?.email,
     imageUrl: auth?.user?.avatar,
   };
+
   return (
     <>
       <Disclosure as="nav" className="bg-gray-800">
