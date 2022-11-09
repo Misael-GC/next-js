@@ -35,7 +35,7 @@ export default function Products() {
           message: 'Producto eliminado exitosamente',
           type: 'error',
           autoClose: true,
-        }); //Poner el catch
+        });
       })
       .catch((error) => {
         setAlert({

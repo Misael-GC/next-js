@@ -47,8 +47,6 @@ export default function FormProduct({ setOpen, setAlert, product }) {
         });
     }
 
-    //console.log(data);
-
     const valid = await ValidationSchema.validate(data).catch(function (err) {
       let errorValidate = err.errors;
       let errorMessage = '';
