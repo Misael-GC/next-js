@@ -18,8 +18,7 @@ export default function LoginPage() {
     // console.log(email, password);
     auth.singIn(email, password).then(
       () => {
-        router.push('/dashboard'); //router
-        console.log('Ok');
+        router.push('/dashboard/gps'); //router
       },
       (message) => {
         console.log('login failed');
