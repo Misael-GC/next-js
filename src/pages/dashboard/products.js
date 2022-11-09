@@ -8,7 +8,6 @@ import useAlert from '@hooks/useAlert';
 import Alert from '@common/Alert';
 import { deleteProduct } from '@services/api/products';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import Image from 'next/image';
 
 export default function Products() {

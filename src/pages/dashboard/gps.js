@@ -3,6 +3,7 @@ import useFetch from '@hooks/useFetch';
 import Pagination from './Pagination';
 import { Chart } from '@common/Chart';
 import { useState } from 'react';
+import Image from 'next/image';
 
 const PRODUCT_LIMIT = 12;
 const PRODUCT_OFFSET = 12;
@@ -67,7 +68,7 @@ export default function Dashboard() {
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center">
                           <div className="flex-shrink-0 h-10 w-10">
-                            <img className="h-10 w-10 rounded-full" src={product.images[0]} alt="" />
+                            {product.images[0] && <Image className="h-10 w-10 rounded-full" loader={() => product.images[0]} src={product.images[0]} layout="fixed" width="40" height="40" alt="" />}
                           </div>
                           <div className="ml-4">
                             <div className="text-sm font-medium text-gray-900">{product.title}</div>
