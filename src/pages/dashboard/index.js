@@ -1,16 +1,16 @@
 import endPoints from '@services/api';
 import useFetch from '@hooks/useFetch';
-import Pagination from './Pagination';
+// import Pagination from './Pagination';
 import { Chart } from '@common/Chart'; //P1
-import { useState } from 'react';
+// import { useState } from 'react';
 
 const PRODUCT_LIMIT = 12;
 const PRODUCT_OFFSET = 12;
 
 export default function Dashboard() {
-  const [offset, setOffset] = useState(PRODUCT_OFFSET);
+  // const [offset, setOffset] = useState(PRODUCT_OFFSET);
 
-  const products = useFetch(endPoints.products.getProducts(PRODUCT_LIMIT, offset));
+  const products = useFetch(endPoints.products.getProducts(PRODUCT_LIMIT, PRODUCT_OFFSET));
 
   //P4 ACCEDER A LA API
   const categoryNames = products?.map((product) => product.category); //p4
@@ -98,7 +98,7 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
-        <Pagination offset={offset} setOffset={setOffset} />
+        {/* <Pagination offset={offset} setOffset={setOffset} /> */}
       </div>
     </>
   );
